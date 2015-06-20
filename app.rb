@@ -26,3 +26,35 @@ DATABASE.results_as_hash = true
 get "/home" do
   erb :index
 end
+
+get "/current_stock" do
+  erb :current_stock
+end
+
+get "/quantity_information" do
+  erb :quantity_information
+end
+
+get "/add_shoe" do
+  erb :add_shoe
+end
+
+get "/update_product" do
+  erb :update_product
+end
+
+get "/view_by_cost" do
+  erb :view_by_cost
+end
+
+get "/location_information" do
+  erb :location_information
+end
+
+get "/category_information" do
+  erb :category_information
+end
+
+get "/delete_shoe" do
+  erb :delete_shoe
+end
