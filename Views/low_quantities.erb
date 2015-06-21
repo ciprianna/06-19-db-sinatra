@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <center>
+      <h2>Low Quantities:<h2>
+    </center>
+  </head>
+  <body>
+    <ul>
+      <% Shoe.where_quantity_is_low.each do |shoe| %>
+        <li><b><%= shoe.id %></b> - <i><%= shoe.name %></i>, <b>Quantity</b>: <%= shoe.location_stock %>
+      <% end %>
+    </ul>
+    <p><a href="/quantity_information">Return to quantity information</a>
+    </p>
+  </body>
+  <footer>
+    <center><button><a href="/home">Return to Home Page</a></button></center>
+  </footer>
+</html>

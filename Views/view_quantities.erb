@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <center>
+      <h2>Current Stock Quantities:<h2>
+    </center>
+  </head>
+  <body>
+    <ul>
+      <% Shoe.all.each do |shoe| %>
+        <li><b><%= shoe.id %></b> - <i><%= shoe.name %></i>, <b>Quantity</b>: <%= shoe.location_stock %>
+      <% end %>
+    </ul>
+    <p>
+      <b>Total Stock:  </b><%= Shoe.total_stock %>
+    </p>
+    <p><a href="/quantity_information">Return to quantity information</a>
+    </p>
+  </body>
+  <footer>
+    <center><button><a href="/home">Return to Home Page</a></button></center>
+  </footer>
+</html>

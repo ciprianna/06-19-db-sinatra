@@ -2,6 +2,7 @@
 require "sqlite3"
 require "sinatra"
 require "sinatra/reloader"
+require "pry"
 require_relative "menu_module.rb"
 require_relative "validity_module.rb"
 require_relative "database_class_methods.rb"
@@ -57,4 +58,28 @@ end
 
 get "/delete_shoe" do
   erb :delete_shoe
+end
+
+get "/view_quantities" do
+  erb :view_quantities
+end
+
+get "/low_quantities" do
+  erb :low_quantities
+end
+
+get "/update_quantities" do
+  erb :update_quantities
+end
+
+get "/save_quantity_update" do
+  # Creates new Shoe Object
+  shoe_to_update = Shoe.find(params["shoe_id"].to_i)
+
+  # Updates shoe quantity and routes to either success or failure erb
+  if shoe_to_update.update_quantity(params["new_quantity"].to_i)
+    erb :success
+  else
+    erb :failure
+  end
 end

@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <center>
+      <h2>Update Shoe Information<h2>
+    </center>
+  </head>
+  <body>
+    <h3>Select a shoe to update</h3>
+    <form action="/save_quantity_update">
+      <select name="shoe_id">
+        <% Shoe.all.each do |shoe| %>
+          <option value="<%= shoe.id %>"><%= shoe.name %></option>
+        <% end %>
+      </select>
+      <p>
+        Enter quantity to add. If removing quantity, enter a negative number.
+      </p>
+      <input type="number" name="new_quantity" placeholder="Quantity to add">
+      <input type="submit">
+    </form>
+    <p><a href="/quantity_information">Return to quantity information</a>
+    </p>
+  </body>
+  <footer>
+    <center><button><a href="/home">Return to Home Page</a></button></center>
+  </footer>
+</html>
