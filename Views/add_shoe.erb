@@ -1,3 +1,32 @@
-Add Shoe
-
-<footer><button><a href="/home">Return to Home Page</a></button></footer>
+<head><center><h1>Add a New Shoe</h1></center></head>
+<body>
+  <center>
+    <form action="/save_new_shoe">
+      <p>Product name
+      <input type="text" name="name" placeholder="Product Name"></p>
+      <p>Cost
+      <input type="number" name="cost" placeholder="Cost"></p>
+      <p>Color
+      <input type="text" name="color" placeholder="Color"></p>
+      Category
+      <select name="category_id">
+        <% Category.all.each do |category| %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+        <% end %>
+      </select>
+      <p>Location
+      <select name="location_id">
+        <% Location.all.each do |location| %>
+          <option value="<%= location.id %>"><%= location.name %></option>
+        <% end %>
+      </select></p>
+      <p>Quantity
+      <input type="number" name="location_stock" placeholder="Quantity"></p>
+      <input type="submit">
+    </form>
+  </center>
+</body>
+<center>~~~~~~~~~~~~~~~~~~~~~~</center>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>
