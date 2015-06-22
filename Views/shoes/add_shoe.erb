@@ -1,0 +1,44 @@
+<% if @error %>
+  <h3>Cannot add this shoe to the database: Missing information.</h3>
+<% end %>
+
+<head><center><h1>Add a New Shoe</h1></center></head>
+<body>
+  <center>
+    <form action="/save_new_shoe">
+      <p>Product name
+      <input type="text" name="name" placeholder="Product Name" value="<%= params["name"] %>"></p>
+      <p>Cost
+      <input type="number" name="cost" placeholder="Cost" value="<%= params["cost"] %>"></p>
+      <p>Color
+      <input type="text" name="color" placeholder="Color" value="<%= params["color"] %>"></p>
+      Category
+      <select name="category_id">
+        <% Category.all.each do |category| %>
+          <% if category.id == params["category_id"].to_i%>
+            <option value="<%= category.id %>" selected><%= category.name %></option>
+          <% else %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+          <% end %>
+        <% end %>
+      </select>
+      <p>Location
+      <select name="location_id">
+        <% Location.all.each do |location| %>
+          <% if location.id == params["location_id"].to_i%>
+            <option value="<%= location.id %>" selected><%= location.name %></option>
+          <% else %>
+            <option value="<%= location.id %>"><%= location.name %></option>
+          <% end %>
+        <% end %>
+      </select></p>
+      <p>Quantity
+      <input type="number" name="location_stock" placeholder="Quantity"></p>
+      <input type="submit">
+    </form>
+  </center>
+</body>
+<center>~~~~~~~~~~~~~~~~~~~~~~</center>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>

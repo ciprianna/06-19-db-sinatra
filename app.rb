@@ -23,82 +23,57 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS locations (id INTEGER PRIMARY KEY, 
 DATABASE.results_as_hash = true
 
 ################################################################################
-
+# START OF UX
+################################################################################
+require_relative "controllers/shoes.rb"
 get "/home" do
-  erb :index
-end
-
-get "/current_stock" do
-  erb :current_stock
+  erb :"general/index"
 end
 
 get "/quantity_information" do
-  erb :quantity_information
-end
-
-get "/add_shoe" do
-  erb :add_shoe
-end
-
-get "/update_product" do
-  erb :update_product
-end
-
-get "/save_shoe_update" do
-  shoe_to_change = Shoe.find(params["shoe_id"])
-  shoe_to_change.name = params["name"]
-  shoe_to_change.cost = params["cost"]
-  shoe_to_change.color = params["color"]
-  shoe_to_change.category_id = params["category_id"]
-  shoe_to_change.location_id = params["location_id"]
-
-  if shoe_to_change.save_valid
-    erb :success
-  else
-    erb :failure
-  end
+  erb :"general/quantity_information"
 end
 
 get "/view_by_cost" do
-  erb :view_by_cost
+  erb :"general/view_by_cost"
 end
 
 get "/cost_category" do
-  erb :cost_category
+  erb :"general/cost_category"
 end
 
 get "/location_information" do
-  erb :location_information
+  erb :"locations/location_information"
 end
 
 get "/category_information" do
-  erb :category_information
+  erb :"categories/category_information"
 end
 
 get "/delete_shoe" do
-  erb :delete_shoe
+  erb :"shoes/delete_shoe"
 end
 
 get "/really_delete_shoe"do
   shoe_to_delete = Shoe.find(params["shoe_id"].to_i)
 
   if shoe_to_delete.delete
-    erb :success
+    erb :"general/success"
   else
-    erb :failure
+    erb :"general/failure"
   end
 end
 
 get "/view_quantities" do
-  erb :view_quantities
+  erb :"general/view_quantities"
 end
 
 get "/low_quantities" do
-  erb :low_quantities
+  erb :"general/low_quantities"
 end
 
 get "/update_quantities" do
-  erb :update_quantities
+  erb :"general/update_quantities"
 end
 
 get "/save_quantity_update" do
@@ -107,52 +82,40 @@ get "/save_quantity_update" do
 
   # Updates shoe quantity and routes to either success or failure erb
   if shoe_to_update.update_quantity(params["new_quantity"].to_i)
-    erb :success
+    erb :"general/success"
   else
-    erb :failure
-  end
-end
-
-get "/save_new_shoe" do
-  # Creates new Shoe Object from form information
-  shoe_to_add = Shoe.new({"name" => params["name"], "cost" => params["cost"].to_i, "color" => params["color"], "category_id" => params["category_id"].to_i, "location_id" => params["location_id"].to_i, "location_stock" => params["location_stock"].to_i})
-
-  # Runs add_to_database method and leads to success or failure erbs
-  if shoe_to_add.add_to_database
-    erb :success
-  else
-    erb :failure
+    erb :"general/failure"
   end
 end
 
 get "/all_locations" do
-  erb :all_locations
+  erb :"locations/all_locations"
 end
 
 get "/all_categories" do
-  erb :all_categories
+  erb :"categories/all_categories"
 end
 
 get "/shoes_at_a_location" do
-  erb :shoes_at_a_location
+  erb :"locations/shoes_at_a_location"
 end
 
 get "/save_view_by_location" do
   @location_to_view = Location.find(params["location_id"])
-  erb :save_view_by_location
+  erb :"locations/save_view_by_location"
 end
 
 get "/shoes_in_a_category" do
-  erb :shoes_in_a_category
+  erb :"categories/shoes_in_a_category"
 end
 
 get "/save_view_by_category" do
   @category_to_view = Category.find(params["category_id"])
-  erb :save_view_by_category
+  erb :"categories/save_view_by_category"
 end
 
 get "/change_location_name" do
-  erb :change_location_name
+  erb :"locations/change_location_name"
 end
 
 get "/save_location_name" do
@@ -160,14 +123,14 @@ get "/save_location_name" do
   location_to_change.name = params["new_name"]
 
   if location_to_change.save_valid
-    erb :success
+    erb :"general/success"
   else
-    erb :failure
+    erb :"general/failure"
   end
 end
 
 get "/change_category_name" do
-  erb :change_category_name
+  erb :"categories/change_category_name"
 end
 
 get "/save_category_name" do
@@ -175,66 +138,66 @@ get "/save_category_name" do
   category_to_change.name = params["new_name"]
 
   if category_to_change.save_valid
-    erb :success
+    erb :"general/success"
   else
-    erb :failure
+    erb :"general/failure"
   end
 end
 
 get "/add_location" do
-  erb :add_location
+  erb :"locations/add_location"
 end
 
 get "/save_new_location" do
   location_to_add = Location.new({"name" => params["name"]})
 
   if location_to_add.add_to_database
-    erb :success
+    erb :"general/success"
   else
-    erb :failure
+    erb :"general/failure"
   end
 end
 
 get "/add_category" do
-  erb :add_category
+  erb :"categories/add_category"
 end
 
 get "/save_new_category" do
   category_to_add = Category.new({"name" => params["name"]})
 
   if category_to_add.add_to_database
-    erb :success
+    erb :"general/success"
   else
-    erb :failure
+    erb :"general/failure"
   end
 end
 
 get "/delete_location" do
-  erb :delete_location
+  erb :"locations/delete_location"
 end
 
 get "/really_delete_location" do
   @location_to_delete = Location.find(params["id"])
 
   if @location_to_delete.delete_location
-    erb :success
+    erb :"general/success"
   else
     @error = true
-    erb :delete_location
+    erb :"locations/delete_location"
   end
 end
 
 get "/delete_category" do
-  erb :delete_category
+  erb :"categories/delete_category"
 end
 
 get "/really_delete_category" do
   @category_to_delete = Category.find(params["id"])
 
   if @category_to_delete.delete_category
-    erb :success
+    erb :"general/success"
   else
     @error = true
-    erb :delete_category
+    erb :"categories/delete_category"
   end
 end
