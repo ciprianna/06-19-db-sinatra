@@ -1,0 +1,15 @@
+<head><center><h2>View Shoes by Category</h2></center></head>
+<body>
+  <form action="/save_view_by_category">
+    <select name="category_id">
+      <% Category.all.each do |category| %>
+        <option value="<%= category.id %>"><%= category.name %></option>
+      <% end %>
+    </select>
+    <input type="submit">
+  </form>
+  <p><a href="/category_information">Return to Category Information</a></p>
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>

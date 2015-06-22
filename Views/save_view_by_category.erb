@@ -1,21 +1,12 @@
-<head>
-  <center>
-    <h2>Current Stock:<h2>
-  </center>
-</head>
+<head><center><h2>View Shoes by Category</h2></center></head>
 <body>
+  <h3><%= @category_to_view.name %></h3>
   <ul>
-    <% Shoe.all.each do |shoe| %>
+    <% @category_to_view.shoes.each do |shoe| %>
       <li><b><%= shoe.id %></b> - <i><%= shoe.name %></i>, <b>Cost</b>: $<%= shoe.cost %>, <b>Color</b>: <%= shoe.color %>, <b>Category ID</b>: <%= shoe.category_id %>, <b>Location ID</b>: <%= shoe.location_id %>, <b>Quantity</b>: <%= shoe.location_stock %></li>
     <% end %>
   </ul>
-  <p><h3>Product Actions</h3>
-    <ul>
-      <li><a href="/add_shoe">Add a new product to the inventory</a></li>
-      <li><a href="/update_product">Update shoe information</a></li>
-      <li><a href="/delete_shoe">Delete a shoe</a></li>
-    </ul>
-  </p>
+  <p><a href="/category_information">Return to Category Information</a></p>
 </body>
 <footer>
   <center><button><a href="/home">Return to Home Page</a></button></center>

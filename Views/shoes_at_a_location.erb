@@ -1,0 +1,15 @@
+<head><center><h2>View Shoes by Location</h2></center></head>
+<body>
+  <form action="/save_view_by_location">
+    <select name="location_id">
+      <% Location.all.each do |location| %>
+        <option value="<%= location.id %>"><%= location.name %></option>
+      <% end %>
+    </select>
+    <input type="submit">
+  </form>
+  <p><a href="/location_information">Return to Location Information</a></p>
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>

@@ -122,3 +122,21 @@ end
 get "/all_categories" do
   erb :all_categories
 end
+
+get "/shoes_at_a_location" do
+  erb :shoes_at_a_location
+end
+
+get "/save_view_by_location" do
+  @location_to_view = Location.find(params["location_id"])
+  erb :save_view_by_location
+end
+
+get "/shoes_in_a_category" do
+  erb :shoes_in_a_category
+end
+
+get "/save_view_by_category" do
+  @category_to_view = Category.find(params["category_id"])
+  erb :save_view_by_category
+end
