@@ -1,0 +1,29 @@
+<% if @error %>
+    <h3>Cannot delete this category while shoes are assigned to it.</h3>
+    <p>
+    <ul>
+    <% @category_to_delete.shoes.each do |shoes| %>
+    <li><b><%= shoes.id %></b> - <i><%= shoes.name %></i> (<%=shoes.location_stock %>)</li>
+    <% end %>
+    </ul>
+    </p>
+<% end %>
+
+
+<head><center><h2>Delete a Category</h2></center></head>
+<body>
+  <form action="/really_delete_category">
+    Choose a category to delete:
+    <select name="id">
+      <% Category.all.each do |category| %>
+      <option value="<%= category.id %>"><%= category.name %></option>
+      <% end %>
+    </select>
+    <p>Click "Submit" if you're sure you wish to delete this category.</p>
+    <input type="submit">
+  </form>
+  <p><a href="/category_information">Return to Category Information</a></p>
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>

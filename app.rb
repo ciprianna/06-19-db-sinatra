@@ -79,6 +79,16 @@ get "/delete_shoe" do
   erb :delete_shoe
 end
 
+get "/really_delete_shoe"do
+  shoe_to_delete = Shoe.find(params["shoe_id"].to_i)
+
+  if shoe_to_delete.delete
+    erb :success
+  else
+    erb :failure
+  end
+end
+
 get "/view_quantities" do
   erb :view_quantities
 end
@@ -196,5 +206,35 @@ get "/save_new_category" do
     erb :success
   else
     erb :failure
+  end
+end
+
+get "/delete_location" do
+  erb :delete_location
+end
+
+get "/really_delete_location" do
+  @location_to_delete = Location.find(params["id"])
+
+  if @location_to_delete.delete_location
+    erb :success
+  else
+    @error = true
+    erb :delete_location
+  end
+end
+
+get "/delete_category" do
+  erb :delete_category
+end
+
+get "/really_delete_category" do
+  @category_to_delete = Category.find(params["id"])
+
+  if @category_to_delete.delete_category
+    erb :success
+  else
+    @error = true
+    erb :delete_category
   end
 end

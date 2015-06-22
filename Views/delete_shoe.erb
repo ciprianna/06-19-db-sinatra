@@ -1,4 +1,18 @@
-
-Delete a product
-
-<footer><button><a href="/home">Return to Home Page</a></button></footer>
+<head>
+  <center>
+    <h2>Delete a Shoe<h2>
+  </center>
+</head>
+<body>
+  <form action="/really_delete_shoe">
+    <select name="shoe_id">
+      <% Shoe.all.each do |shoe| %>
+        <option value="<%= shoe.id %>"><b><%= shoe.id %></b> - <i><%= shoe.name %></i>, <b>Cost</b>: $<%= shoe.cost %>, <b>Color</b>: <%= shoe.color %>, <b>Category ID</b>: <%= shoe.category_id %>, <b>Location ID</b>: <%= shoe.location_id %>, <b>Quantity</b>: <%= shoe.location_stock %></option>
+        <% end %>
+    </select>
+    <p>Click "Submit" if you're <b>sure</b> that you wish to delete this shoe. Shoe cannot be restored.</p>
+    <input type="submit">
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>

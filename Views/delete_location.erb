@@ -1,0 +1,29 @@
+<% if @error %>
+    <h3>Cannot delete this location while shoes are stored here.</h3>
+    <p>
+    <ul>
+    <% @location_to_delete.shoes.each do |shoes| %>
+    <li><b><%= shoes.id %></b> - <i><%= shoes.name %></i> (<%=shoes.location_stock %>)</li>
+    <% end %>
+    </ul>
+    </p>
+<% end %>
+
+
+<head><center><h2>Delete a Location</h2></center></head>
+<body>
+  <form action="/really_delete_location">
+    Choose a location to delete:
+    <select name="id">
+      <% Location.all.each do |location| %>
+      <option value="<%= location.id %>"><%= location.name %></option>
+      <% end %>
+    </select>
+    <p>Click "Submit" if you're sure you wish to delete this location.</p>
+    <input type="submit">
+  </form>
+  <p><a href="/location_information">Return to Location Information</a></p>
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>
