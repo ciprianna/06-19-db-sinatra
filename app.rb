@@ -140,3 +140,33 @@ get "/save_view_by_category" do
   @category_to_view = Category.find(params["category_id"])
   erb :save_view_by_category
 end
+
+get "/change_location_name" do
+  erb :change_location_name
+end
+
+get "/save_location_name" do
+  location_to_change = Location.find(params["id"])
+  location_to_change.name = params["new_name"]
+
+  if location_to_change.save_valid
+    erb :success
+  else
+    erb :failure
+  end
+end
+
+get "/change_category_name" do
+  erb :change_category_name
+end
+
+get "/save_category_name" do
+  category_to_change = Category.find(params["id"])
+  category_to_change.name = params["new_name"]
+
+  if category_to_change.save_valid
+    erb :success
+  else
+    erb :failure
+  end
+end

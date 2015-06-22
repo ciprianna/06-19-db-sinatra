@@ -1,0 +1,18 @@
+<head><center><h2>Change Location Name</h2></center></head>
+<body>
+  Select the location to change the name of
+  <form action="/save_location_name">
+    <select name="id">
+      <% Location.all.each do |location| %>
+      <option value="<%= location.id %>"><%= location.name %></option>
+      <% end %>
+    </select>
+    <p>
+    <input type="text" name="new_name" placeholder="New Location Name"></p>
+    <p><input type="submit"></p>
+  </form>
+  <p><a href="/location_information">Return to Location Informaton</a></p>
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>

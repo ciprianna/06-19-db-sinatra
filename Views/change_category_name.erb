@@ -1,0 +1,18 @@
+<head><center><h2>Change Category Name</h2></center></head>
+<body>
+  Select the category to change the name of
+  <form action="/save_category_name">
+    <select name="id">
+      <% Category.all.each do |category| %>
+      <option value="<%= category.id %>"><%= category.name %></option>
+      <% end %>
+    </select>
+    <p>
+    <input type="text" name="new_name" placeholder="New Category Name"></p>
+    <p><input type="submit"></p>
+  </form>
+  <p><a href="/category_information">Return to Category Informaton</a></p>
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>
