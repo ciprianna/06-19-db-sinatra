@@ -1,0 +1,33 @@
+<h2>View by Cost</h2>
+<body>
+  <h3>Select a category to view:</h3>
+  <form action="/cost_category">
+  <select name="cost_category">
+    <option value="high">High - $100+</option>
+    <option value="medium">Medium - $50-$99</option>
+    <option value="low">Low - $0-$49</option>
+  </select>
+  <input type="submit">
+  </form>
+  <ul>
+  <% if params["cost_category"] == "high" %>
+    <% shoes_by_price = Shoe.where_cost("high") %>
+    <% shoes_by_price.each do |shoe| %>
+      <li><%= shoe.id %>, <i><%= shoe.name %>, <b>Cost</b>: $<%= shoe.cost %>, <b>Color</b>: <%= shoe.color %>, <b>Category ID</b>: <%= shoe.category_id %>, <b>Location ID</b>: <%= shoe.location_id %>, <b>Quantity</b>: <%= shoe.location_stock %></li>
+    <% end %>
+  <% elsif params["cost_category"] == "medium" %>
+    <% shoes_by_price = Shoe.where_cost("medium") %>
+    <% shoes_by_price.each do |shoe| %>
+      <li><%= shoe.id %>, <i><%= shoe.name %>, <b>Cost</b>: $<%= shoe.cost %>, <b>Color</b>: <%= shoe.color %>, <b>Category ID</b>: <%= shoe.category_id %>, <b>Location ID</b>: <%= shoe.location_id %>, <b>Quantity</b>: <%= shoe.location_stock %></li>
+    <% end %>
+  <% elsif params["cost_category"] == "low" %>
+    <% shoes_by_price = Shoe.where_cost("low") %>
+    <% shoes_by_price.each do |shoe| %>
+      <li><%= shoe.id %>, <i><%= shoe.name %>, <b>Cost</b>: $<%= shoe.cost %>, <b>Color</b>: <%= shoe.color %>, <b>Category ID</b>: <%= shoe.category_id %>, <b>Location ID</b>: <%= shoe.location_id %>, <b>Quantity</b>: <%= shoe.location_stock %></li>
+    <% end %>
+  <% end %>
+  </ul>
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>

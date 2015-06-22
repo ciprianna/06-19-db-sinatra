@@ -44,8 +44,27 @@ get "/update_product" do
   erb :update_product
 end
 
+get "/save_shoe_update" do
+  shoe_to_change = Shoe.find(params["shoe_id"])
+  shoe_to_change.name = params["name"]
+  shoe_to_change.cost = params["cost"]
+  shoe_to_change.color = params["color"]
+  shoe_to_change.category_id = params["category_id"]
+  shoe_to_change.location_id = params["location_id"]
+
+  if shoe_to_change.save_valid
+    erb :success
+  else
+    erb :failure
+  end
+end
+
 get "/view_by_cost" do
   erb :view_by_cost
+end
+
+get "/cost_category" do
+  erb :cost_category
 end
 
 get "/location_information" do
@@ -87,7 +106,7 @@ end
 get "/save_new_shoe" do
   # Creates new Shoe Object from form information
   @shoe_to_add = Shoe.new({"name" => params["name"], "cost" => params["cost"].to_i, "color" => params["color"], "category_id" => params["category_id"].to_i, "location_id" => params["location_id"].to_i, "location_stock" => params["location_stock"].to_i})
-  
+
   # Runs add_to_database method and leads to success or failure erbs
   if @shoe_to_add.add_to_database
     erb :success
