@@ -170,3 +170,31 @@ get "/save_category_name" do
     erb :failure
   end
 end
+
+get "/add_location" do
+  erb :add_location
+end
+
+get "/save_new_location" do
+  location_to_add = Location.new({"name" => params["name"]})
+
+  if location_to_add.add_to_database
+    erb :success
+  else
+    erb :failure
+  end
+end
+
+get "/add_category" do
+  erb :add_category
+end
+
+get "/save_new_category" do
+  category_to_add = Category.new({"name" => params["name"]})
+
+  if category_to_add.add_to_database
+    erb :success
+  else
+    erb :failure
+  end
+end
