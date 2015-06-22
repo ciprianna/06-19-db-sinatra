@@ -1,0 +1,16 @@
+<head>
+  <center>
+    <h2>Locations<h2>
+  </center>
+</head>
+<body>
+  <ul>
+    <% Location.all.each do |location| %>
+      <li><b><%= location.id %></b> - <i><%= location.name %></i></li>
+    <% end %>
+  </ul>
+  <p><a href="/location_information">Return to Location Information</a></p>
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>

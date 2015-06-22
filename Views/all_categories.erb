@@ -1,0 +1,16 @@
+<head>
+  <center>
+    <h2>Categories<h2>
+  </center>
+</head>
+<body>
+  <ul>
+    <% Category.all.each do |category| %>
+      <li><b><%= category.id %></b> - <i><%= category.name %></i></li>
+    <% end %>
+  </ul>
+  <p><a href="/category_information">Return to Category Information</a></p>
+</body>
+<footer>
+  <center><button><a href="/home">Return to Home Page</a></button></center>
+</footer>
