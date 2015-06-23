@@ -1,3 +1,7 @@
+<% if @error %>
+  <h3>New category failed: Missing information</h3>
+<% end %>
+
 <head><center><h2>Add New Category</h2></center></head>
 <body>
   <form action="/save_new_category">

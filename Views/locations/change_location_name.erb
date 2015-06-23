@@ -1,10 +1,14 @@
+<% if @error %>
+  <h3> Name change failed: Missing Information</h3></h3>
+<% end %>
+
 <head><center><h2>Change Location Name</h2></center></head>
 <body>
   Select the location to change the name of
   <form action="/save_location_name">
     <select name="id">
       <% Location.all.each do |location| %>
-      <option value="<%= location.id %>"><%= location.name %></option>
+        <option value="<%= location.id %>"><%= location.name %></option>
       <% end %>
     </select>
     <p>
