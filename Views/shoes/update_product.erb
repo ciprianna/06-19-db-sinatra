@@ -1,42 +1,17 @@
 <head><center><h2>Update Product</h2></center></head>
 <body>
-  <form action="/save_shoe_update">
-    <h3>Choose a shoe to update</h3>
-    <p><select name="shoe_id">
-      <% Shoe.all.each do |shoe| %>
-      <option value="<%= shoe.id %>"><%= shoe.name %></option>
-      <% end %>
-    </select></p>
-
-    <p><h3>Enter new product information</h3></p>
-    <p><h4>All fields must be entered</h4></p>
-    Change Name
-    <input type="text" name="name" placeholder="Name">
-    <p>Change Cost
-      <input type="number" name="cost" placeholder="Cost">
-    </p>
-    <p>Change Color
-      <input type="text" name="color" placeholder="Color">
-    </p>
-    <p>Change Category
-      <select name="category_id">
-        <% Category.all.each do |category| %>
-          <option value="<%= category.id %>"><%= category.name %></option>
+    <h3>Click a shoe to update</h3>
+      <ul>
+        <% Shoe.all.each do |shoe| %>
+          <li><a href="/update_product_form/<%= shoe.id %>"><%= shoe.name %></a></li>
         <% end %>
-      </select></p>
-    <p>Location
-      <select name="location_id">
-        <% Location.all.each do |location| %>
-          <option value="<%= location.id %>"><%= location.name %></option>
-        <% end %>
-      </select></p>
-    <p><input type="submit"></p>
-  </form>
+      </ul>
+      <p>
+        <a href="/current_stock">Return to Current Inventory List</a>
+      </p>
 </body>
 <footer>
-  <center>~~~~~~~~~~~~~~~~~~~~~~
+  <center>
   <p><button><a href="/home">Return to Home Page</a></button></p>
 </center>
 </footer>
-
-<!-- If they select X to update, go to the general page and do some stuff based on x, instead of having it update all. -->

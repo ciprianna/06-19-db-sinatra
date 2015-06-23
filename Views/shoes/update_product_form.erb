@@ -1,0 +1,48 @@
+<% if @error %>
+  <h3>Item was not updated: Missing information</h3>
+<% end %>
+
+<head><center><h2>Update Product</h2></center></head>
+<body>
+  <form action="/save_shoe_update">
+    <p><h3>Change desired information and click "Submit"</h3></p>
+    Change Name
+    <input type="text" name="name" placeholder="Name" value="<%= params["name"].nil? ? @shoe_to_change.name : params["name"]%>">
+    <p>Change Cost
+      <input type="number" name="cost" placeholder="Cost" value="<%= params["cost"].nil? ? @shoe_to_change.cost : params["cost"] %>">
+    </p>
+    <p>Change Color
+      <input type="text" name="color" placeholder="Color" value="<%= params["color"].nil? ? @shoe_to_change.color : params["color"]%>">
+    </p>
+    <p>Change Category
+      <select name="category_id">
+        <% Category.all.each do |category| %>
+          <% if category.id == params["category_id"] || category.id == @shoe_to_change.category_id %>
+            <option value="<%= category.id %>" selected><%= category.name %></option>
+          <% else %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+          <% end %>
+        <% end %>
+      </select></p>
+    <p>Location
+      <select name="location_id">
+        <% Location.all.each do |location| %>
+          <% if location.id == params["location_id"] || location.id == @shoe_to_change.location_id %>
+            <option value="<%= location.id %>" selected><%= location.name %></option>
+          <% else %>
+            <option value="<%= location.id %>"><%= location.name %></option>
+          <% end %>
+        <% end %>
+      </select></p>
+      <input type="hidden" name="id" value="<%= params["id"] %>">
+    <p><input type="submit"></p>
+  </form>
+  <p>
+    <a href="/current_stock">Return to Current Inventory List</a>
+  </p>
+</body>
+<footer>
+  <center>~~~~~~~~~~~~~~~~~~~~~~
+  <p><button><a href="/home">Return to Home Page</a></button></p>
+</center>
+</footer>

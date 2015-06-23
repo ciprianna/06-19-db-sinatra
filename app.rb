@@ -26,6 +26,7 @@ DATABASE.results_as_hash = true
 # START OF UX
 ################################################################################
 require_relative "controllers/shoes.rb"
+
 get "/home" do
   erb :"general/index"
 end
@@ -48,20 +49,6 @@ end
 
 get "/category_information" do
   erb :"categories/category_information"
-end
-
-get "/delete_shoe" do
-  erb :"shoes/delete_shoe"
-end
-
-get "/really_delete_shoe"do
-  shoe_to_delete = Shoe.find(params["shoe_id"].to_i)
-
-  if shoe_to_delete.delete
-    erb :"general/success"
-  else
-    erb :"general/failure"
-  end
 end
 
 get "/view_quantities" do
